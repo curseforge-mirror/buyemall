@@ -11,12 +11,19 @@ jobs:
     env:
       REPO_SETUP_TOKEN: ${{ secrets.REPO_SETUP_TOKEN }}
     steps:
+      - name: Do not run on template repository
+        shell: bash
+        run: |
+          curl --silent -X GET \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github.baptiste-preview+json" \
+            https://api.github.com/repos/$GITHUB_REPOSITORY \
+            | jq --exit-status '.is_template == false';
       - name: Checkout
         uses: actions/checkout@v3
       - name: actions-template-sync
-        uses: AndreasAugustin/actions-template-sync@v0.3.1-draft
+        uses: curseforge-mirror/actions-template-sync@v1
         with:
           github_token: ${{ env.REPO_SETUP_TOKEN || secrets.GITHUB_TOKEN }}
           source_repo_path: curseforge-mirror/template
           upstream_branch: master
-          pr_labels: template-sync

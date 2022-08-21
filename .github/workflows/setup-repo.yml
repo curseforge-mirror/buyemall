@@ -1,9 +1,13 @@
-name: Setup repository
+name: Setup Repository
 on:
   workflow_dispatch:
   push:
     paths:
       - setup.json
+  workflow_run:
+    workflows: ["Template Sync"]
+    types:
+      - completed
 
 jobs:
   set-up-repo:
@@ -22,7 +26,7 @@ jobs:
             https://api.github.com/repos/$GITHUB_REPOSITORY \
             | jq --exit-status '.is_template == false';
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           token: ${{ env.REPO_SETUP_TOKEN || secrets.GITHUB_TOKEN }}
 
