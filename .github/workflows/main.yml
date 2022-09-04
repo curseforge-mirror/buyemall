@@ -5,8 +5,8 @@ on:
     types:
       - completed
   workflow_dispatch:
-  # schedule:
-  #   - cron: '0 */3 * * *'
+  schedule:
+    - cron: '0 */3 * * *'
 
 jobs:
   pull_and_upload_files:
@@ -33,8 +33,8 @@ jobs:
     - name: Run Main Script
       run: python main.py
       env:
-        ADDON_NAME: ADDON_NAME_HERE
-        ADDON_ID: ADDON_ID_HERE
+        ADDON_NAME: buyemall
+        ADDON_ID: 2590
         SCRAPER_API_KEY: ${{ env.SCRAPER_API_KEY }}
         CF_API_TOKEN: ${{ env.CF_API_TOKEN }}
 

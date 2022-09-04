@@ -1,6 +1,6 @@
-# BuyEmAll Mirror
+# BuyEmAll Shadowlands Mirror
 
-This is a mirror of Jordy141's BuyEmAll
+This is a mirror of Jordy141's BuyEmAll Shadowlands
 
 - [Curseforge URL](https://www.curseforge.com/wow/addons/buyemall)
 
