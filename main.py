@@ -78,7 +78,7 @@ class CFScraper:
         except cloudscraper.exceptions.CloudflareCaptchaProvider:
             if self.enable_scraper_api:
                 log.warning("Error: Captcha found, retrying with Scraper")
-                self.make_scraper_request(url)
+                response = self.make_scraper_request(url)
             else:
                 return False
         return response
@@ -215,7 +215,7 @@ class CFScraper:
     def run(self):
         log.info(f"Pulling files for addon: {self.addon_name}")
 
-        if self.addon_id != 0:
+        if self.addon_id != "0":
             if self.use_curseforge_api(self.addon_id):
                 log.info("Curseforge API Pull Success!")
                 return
